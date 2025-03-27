@@ -1,0 +1,19 @@
+name: Version Bump and Tagging
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    name: Generate Tag
+    runs-on: ubuntu-latest
+    steps:
+      - name: Fetch Repository
+        uses: actions/checkout@v2
+
+      - name: Increment Version and Apply Tag
+        uses: anothrNick/github-tag-action@1.26.0
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          DEFAULT_BUMP: patch
